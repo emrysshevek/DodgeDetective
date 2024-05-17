@@ -24,8 +24,9 @@ func _physics_process(delta):
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision:
 		#print("Collision", position.round())
-		var reflect = collision.get_remainder().bounce(collision.get_normal())
-		velocity = velocity.bounce(collision.get_normal())
+		var reflect = collision.get_remainder().bounce(collision.get_normal()).round()
+		velocity = velocity.bounce(collision.get_normal()).round()
+
 		move_and_collide(reflect)
 	position = position.round()
 
@@ -33,3 +34,7 @@ func reset():
 	position = start_position
 	velocity = transform.y * speed
 	Sprite.rotation = 0
+
+func replay_mode():
+	reset()
+	velocity *= 0

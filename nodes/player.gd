@@ -13,7 +13,6 @@ signal hit
 var is_bullet_time = false
 var in_step = false
 var step_direction
-var states = []
 var mode = "live"
 
 func reset():
@@ -26,6 +25,9 @@ func reset():
 	else:
 		mode = "live"
 	frame = 0
+
+func replay_mode():
+	reset()
 
 func _process(delta):
 	Arrow.look_at(get_viewport().get_mouse_position())
@@ -41,7 +43,6 @@ func _physics_process(delta):
 
 func live_movement(delta):
 	var direction
-	var state: Dictionary = {}
 	
 	if in_step:
 		direction = step_direction
@@ -57,21 +58,11 @@ func live_movement(delta):
 
 	if direction:
 		position += direction * speed * delta
-		state["offset"] = direction * speed * delta
-	
-	if !state.is_empty():
-		state["frame"] = frame
-		states.push_back(state)
 
-	frame += 1 * Engine.time_scale
 	move_and_slide()
 
 func replay_movement(delta):
-	if states.size() > 0 && frame >= states[0].frame:
-		var input_state: Dictionary = states.pop_front()
-		if input_state.get("offset"):
-			position += input_state.offset
-	frame += 1
+	pass
 
 func _on_hit_box_body_entered(body):
 	# check if body is an enemy
