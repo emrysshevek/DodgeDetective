@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cinyn81wpex8w"]
+
+[ext_resource type="Script" path="res://scenes/level_controller.gd" id="1_d67tf"]
+[ext_resource type="PackedScene" uid="uid://tvr1ag56rn38" path="res://nodes/player.tscn" id="1_xec6e"]
+[ext_resource type="PackedScene" uid="uid://0ogjfibw1sxu" path="res://nodes/room.tscn" id="2_cvv0l"]
+[ext_resource type="PackedScene" uid="uid://drsd2pavas777" path="res://nodes/replay.tscn" id="2_wt55p"]
+[ext_resource type="PackedScene" uid="uid://eif2kkm1ix8o" path="res://nodes/enemy.tscn" id="3_e41v5"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_d67tf")
+
+[node name="Replay" parent="." instance=ExtResource("2_wt55p")]
+
+[node name="Room" parent="." instance=ExtResource("2_cvv0l")]
+position = Vector2(446, 2)
+scale = Vector2(2.41, 2.41)
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Entities" instance=ExtResource("3_e41v5")]
+position = Vector2(1250, 612)
+
+[node name="Enemy2" parent="Entities" instance=ExtResource("3_e41v5")]
+position = Vector2(676, 402)
+
+[node name="Enemy3" parent="Entities" instance=ExtResource("3_e41v5")]
+position = Vector2(1106, 224)
+
+[node name="Enemy4" parent="Entities" instance=ExtResource("3_e41v5")]
+position = Vector2(684, 856)
+
+[node name="Enemy5" parent="Entities" instance=ExtResource("3_e41v5")]
+position = Vector2(1016, 544)
+
+[node name="Player" parent="Entities" instance=ExtResource("1_xec6e")]
+position = Vector2(978, 1005)

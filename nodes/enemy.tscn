@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://eif2kkm1ix8o"]
+
+[ext_resource type="Script" path="res://nodes/enemy.gd" id="1_xry7p"]
+[ext_resource type="Texture2D" uid="uid://d0rseacrn3mmf" path="res://assets/spikes-full.png" id="2_7a0rs"]
+
+[sub_resource type="Curve" id="Curve_otfhv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.363129, 0.62019), -1.17314, -1.17314, 0, 0, Vector2(1, 0.345368), -0.0292838, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_bxr66"]
+colors = PackedColorArray(0.309804, 0.686275, 0.972549, 1, 1, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ufff5"]
+radius = 66.68
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_xry7p")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 3
+lifetime = 0.1
+texture = ExtResource("2_7a0rs")
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_otfhv")
+color_ramp = SubResource("Gradient_bxr66")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7a0rs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.75, 0.75)
+shape = SubResource("CircleShape2D_ufff5")
+debug_color = Color(0.976471, 0.0980392, 0.294118, 0.419608)

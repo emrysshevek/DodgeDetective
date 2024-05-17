@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://tvr1ag56rn38"]
+
+[ext_resource type="Script" path="res://nodes/player.gd" id="1_7ksvw"]
+[ext_resource type="Texture2D" uid="uid://l8p7fj8nxp5e" path="res://assets/circle.png" id="2_0m5cf"]
+[ext_resource type="Texture2D" uid="uid://byq0eyaefwbkk" path="res://assets/diamond.png" id="3_vt0x3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hhm4v"]
+radius = 29.0172
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_7ksvw")
+bullet_time_scale = 0.005
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_0m5cf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hhm4v")
+debug_color = Color(0.235294, 0.533333, 0.203922, 0.419608)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_hhm4v")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.65
+randomness = 0.34
+fract_delta = false
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 240.91
+initial_velocity_max = 376.26
+linear_accel_min = -100.0
+linear_accel_max = -49.5
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+color = Color(0.654902, 0.00784314, 0.0431373, 1)
+
+[node name="DirectionArrow" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="DirectionArrow"]
+position = Vector2(56, -9.53674e-07)
+rotation = 2.11708
+scale = Vector2(0.301152, 0.30716)
+texture = ExtResource("3_vt0x3")
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="timeout" from="StepTimer" to="." method="end_step"]
