@@ -48,7 +48,7 @@ func live_movement(delta):
 	else:
 		if is_bullet_time:
 			if Input.is_action_just_released("step_direction"):
-				begin_step(position.direction_to(get_viewport().get_mouse_position()))
+				begin_step(global_position.direction_to(get_viewport().get_mouse_position()))
 			elif Input.is_action_just_pressed("step_still"):
 				begin_step(null)
 		# Get the input direction and handle the movement/deceleration.
@@ -92,6 +92,7 @@ func toggle_bullet_time():
 		Engine.time_scale = 1
 
 func begin_step(direction):
+	print(direction)
 	in_step = true
 	step_direction = direction
 	Engine.time_scale = 1

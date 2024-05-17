@@ -4,28 +4,32 @@
 [ext_resource type="Texture2D" uid="uid://d0rseacrn3mmf" path="res://assets/spikes-full.png" id="2_7a0rs"]
 
 [sub_resource type="Curve" id="Curve_otfhv"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.363129, 0.62019), -1.17314, -1.17314, 0, 0, Vector2(1, 0.345368), -0.0292838, 0.0, 0, 0]
+_data = [Vector2(0.0168539, 0.769231), 0.0, 0.0, 0, 0, Vector2(0.460674, 0.472527), -1.17314, -1.17314, 0, 0, Vector2(0.994382, 0.241758), -0.0292838, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_bxr66"]
-colors = PackedColorArray(0.309804, 0.686275, 0.972549, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0.704256, 0.860744, 0.995053, 0.678431, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ufff5"]
-radius = 66.68
+radius = 63.3333
 
 [node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.8, 0.8)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_xry7p")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-amount = 3
+amount = 15
 lifetime = 0.1
 texture = ExtResource("2_7a0rs")
-direction = Vector2(0, 0)
+direction = Vector2(0, 1)
 spread = 0.0
 gravity = Vector2(0, 0)
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
 scale_amount_curve = SubResource("Curve_otfhv")
+color = Color(1, 1, 1, 0.537255)
 color_ramp = SubResource("Gradient_bxr66")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

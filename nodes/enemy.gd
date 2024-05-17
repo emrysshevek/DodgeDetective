@@ -6,7 +6,8 @@ extends CharacterBody2D
 @export var rotation_speed = 10
 
 @onready var start_position = position
-@onready var Sprite = get_node("Sprite2D")
+@onready var Sprite: Sprite2D = get_node("Sprite2D")
+@onready var Emitter: CPUParticles2D = get_node("CPUParticles2D")
 
 func _ready():
 	reset()
@@ -15,11 +16,14 @@ func _process(delta):
 	Sprite.rotation = Sprite.rotation + (rotation_speed * delta)
 	if Sprite.rotation > 360:
 		Sprite.rotation -= 360
+		
+	Emitter.direction = Vector2.DOWN
+	Emitter.scale = scale * .5
 
 func _physics_process(delta):
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision:
-		print("Collision", position.round())
+		#print("Collision", position.round())
 		var reflect = collision.get_remainder().bounce(collision.get_normal())
 		velocity = velocity.bounce(collision.get_normal())
 		move_and_collide(reflect)
@@ -27,5 +31,5 @@ func _physics_process(delta):
 
 func reset():
 	position = start_position
-	velocity = (Vector2.UP + Vector2.RIGHT) * speed
+	velocity = transform.y * speed
 	Sprite.rotation = 0
