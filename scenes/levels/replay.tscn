@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://drsd2pavas777"]
 
-[ext_resource type="Script" path="res://nodes/replay.gd" id="1_feis2"]
+[ext_resource type="Script" path="res://scenes/levels/replay.gd" id="1_feis2"]
 
 [node name="Replay" type="Node"]
 script = ExtResource("1_feis2")

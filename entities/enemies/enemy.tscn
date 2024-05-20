@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://eif2kkm1ix8o"]
+[gd_scene load_steps=7 format=3 uid="uid://eif2kkm1ix8o"]
 
-[ext_resource type="Script" path="res://nodes/enemy.gd" id="1_xry7p"]
+[ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1_xry7p"]
 [ext_resource type="Texture2D" uid="uid://d0rseacrn3mmf" path="res://assets/spikes-full.png" id="2_7a0rs"]
+[ext_resource type="PackedScene" uid="uid://dicfyyogjmyna" path="res://entities/components/reflector_component.tscn" id="3_poevm"]
 
 [sub_resource type="Curve" id="Curve_otfhv"]
 _data = [Vector2(0.0168539, 0.769231), 0.0, 0.0, 0, 0, Vector2(0.460674, 0.472527), -1.17314, -1.17314, 0, 0, Vector2(0.994382, 0.241758), -0.0292838, 0.0, 0, 0]
@@ -18,6 +19,7 @@ scale = Vector2(0.8, 0.8)
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_xry7p")
+speed = 1200
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 15
@@ -39,3 +41,5 @@ texture = ExtResource("2_7a0rs")
 scale = Vector2(0.75, 0.75)
 shape = SubResource("CircleShape2D_ufff5")
 debug_color = Color(0.976471, 0.0980392, 0.294118, 0.419608)
+
+[node name="ReflectorComponent" parent="." instance=ExtResource("3_poevm")]

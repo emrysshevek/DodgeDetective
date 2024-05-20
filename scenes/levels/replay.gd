@@ -43,6 +43,9 @@ func _physics_process(delta):
 	if paused:
 		return
 		
+	if mode == "replay" && states.size() > 0:
+		replay_state(delta)
+		
 	elapsed_time += delta * Engine.time_scale
 	curr_time += delta * Engine.time_scale
 	
@@ -50,25 +53,20 @@ func _physics_process(delta):
 		elapsed_time -= tick_length
 		if mode == "record":
 			save_state()
+			#print("SAVING STATE @ %s. STATE COUNT = %s" % [curr_time, states.size()])
 		elif states.size() > 0:
 			states.pop_front()
+			#print("REPLAYING STATE @ %s. STATE COUNT = %s" % [curr_time, states.size()])
 			if states.size() == 0:
 				pause()
-				
-	if mode == "replay" && states.size() > 0:
-		replay_state(delta)
-		
-	print("tick: %s, delta: %s, elapsed: %s, current: %s" % [tick_length, delta, elapsed_time, curr_time])
 
 func save_state():
-	print("SAVING STATE @ TIME %s" % curr_time)
 	var state = []
 	for entity in Entities.get_children():
 		state.append([entity, entity.global_position])
 	states.append(state)
 	
 func replay_state(delta):
-	print("REPLAYING STATE @ TIME %s" % curr_time)
 	for kv in states[0]:
 		var entity: Node2D = kv[0]
 		var pos: Vector2 = kv[1]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dji04lggosyfy"]
+
+[ext_resource type="Script" path="res://scenes/levels/LevelCamera.gd" id="1_e2hvl"]
+
+[node name="LevelCamera" type="Camera2D"]
+script = ExtResource("1_e2hvl")

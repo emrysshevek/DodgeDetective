@@ -1,4 +1,4 @@
-class_name Player extends CharacterBody2D
+class_name Player extends Actor
 
 signal hit
 
@@ -8,7 +8,6 @@ signal hit
 @onready var Arrow: Node2D = get_node("DirectionArrow")
 @onready var StepTimer: Timer = get_node("StepTimer")
 @onready var frame = 0
-@onready var start_position = position
 
 var is_bullet_time = false
 var in_step = false

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dicfyyogjmyna"]
+
+[ext_resource type="Script" path="res://entities/components/reflector_component.gd" id="1_publf"]
+
+[node name="ReflectorComponent" type="Node"]
+script = ExtResource("1_publf")

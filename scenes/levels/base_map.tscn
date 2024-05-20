@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsnsbc0e2p7xu"]
+
+[ext_resource type="Script" path="res://scenes/levels/base_map.gd" id="1_hht1o"]
+[ext_resource type="TileSet" uid="uid://b0i3r48j8ku4v" path="res://scenes/levels/level_tiles.tres" id="1_rk7dj"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource("1_rk7dj")
+format = 2
+layer_0/name = "ground"
+layer_1/name = "walls"
+layer_1/navigation_enabled = false
+layer_1/tile_data = PackedInt32Array()
+script = ExtResource("1_hht1o")
+
+[node name="StartArea" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="ArenaArea" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="EndArea" type="Area2D" parent="."]
+collision_mask = 4
+
+[connection signal="body_entered" from="StartArea" to="." method="_on_start_area_body_entered"]
+[connection signal="body_exited" from="StartArea" to="." method="_on_start_area_body_exited"]
+[connection signal="body_entered" from="ArenaArea" to="." method="_on_arena_area_body_entered"]
+[connection signal="body_exited" from="ArenaArea" to="." method="_on_arena_area_body_exited"]
+[connection signal="body_entered" from="EndArea" to="." method="_on_end_area_body_entered"]
+[connection signal="body_exited" from="EndArea" to="." method="_on_end_area_body_exited"]
