@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmpx7gyj5dh1p"]
+
+[ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_5ejcv"]
+[ext_resource type="PackedScene" uid="uid://8cp846uxapmw" path="res://ui/LevelStartText.tscn" id="2_4lj8m"]
+[ext_resource type="PackedScene" uid="uid://tfhwl8cjpl2v" path="res://ui/LevelEndText.tscn" id="3_xjovg"]
+[ext_resource type="PackedScene" uid="uid://dbd2mk0vi86r2" path="res://scenes/levels/set1/1_1/map1_1.tscn" id="4_rnx4e"]
+[ext_resource type="PackedScene" uid="uid://drsd2pavas777" path="res://scenes/levels/replay.tscn" id="5_k665a"]
+[ext_resource type="PackedScene" uid="uid://eif2kkm1ix8o" path="res://entities/enemies/enemy.tscn" id="6_7c5tm"]
+[ext_resource type="PackedScene" uid="uid://tvr1ag56rn38" path="res://entities/player/player.tscn" id="7_n0hug"]
+[ext_resource type="PackedScene" uid="uid://dji04lggosyfy" path="res://scenes/levels/LevelCamera.tscn" id="8_akq8a"]
+
+[node name="Level11" type="Node2D"]
+script = ExtResource("1_5ejcv")
+
+[node name="Map1_1" parent="." instance=ExtResource("4_rnx4e")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="StartingText" parent="UI" instance=ExtResource("2_4lj8m")]
+visible = false
+
+[node name="EndingText" parent="UI" instance=ExtResource("3_xjovg")]
+visible = false
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Replay" parent="." node_paths=PackedStringArray("Entities") instance=ExtResource("5_k665a")]
+Entities = NodePath("../Actors")
+
+[node name="Actors" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Actors" instance=ExtResource("6_7c5tm")]
+position = Vector2(576, 344)
+
+[node name="Player" parent="Actors" instance=ExtResource("7_n0hug")]
+position = Vector2(272, 320)
+
+[node name="LevelCamera" parent="." node_paths=PackedStringArray("player", "level") instance=ExtResource("8_akq8a")]
+player = NodePath("../Actors/Player")
+level = NodePath("../Map1_1")

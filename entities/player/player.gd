@@ -15,15 +15,15 @@ var step_direction
 var mode = "live"
 
 func reset():
-	position = start_position
-	is_bullet_time = false
-	StepTimer.stop()
-	in_step = false
-	if mode == "live":
-		mode = "replay"
-	else:
-		mode = "live"
-	frame = 0
+	super.reset()
+	if is_bullet_time:
+		toggle_bullet_time()
+	if in_step:
+		end_step()
+	#if mode == "live":
+		#mode = "replay"
+	#else:
+		#mode = "live"
 
 func replay_mode():
 	reset()

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://tfhwl8cjpl2v"]
 
 [node name="EndingText" type="VBoxContainer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,7 +10,14 @@ alignment = 1
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 60
 text = "Level Complete!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "Press enter to go to next level"
 horizontal_alignment = 1

@@ -24,7 +24,7 @@ func _on_collision(collision):
 
 
 func reset():
-	position = start_position
+	super.reset()
 	velocity = transform.y * speed
 	Sprite.rotation = 0
 
