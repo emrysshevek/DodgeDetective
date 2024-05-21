@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4c7pahy6x0u4"]
+[gd_scene load_steps=9 format=3 uid="uid://4c7pahy6x0u4"]
 
 [ext_resource type="PackedScene" uid="uid://8cp846uxapmw" path="res://ui/LevelStartText.tscn" id="1_4rm3a"]
 [ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_ungnu"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cjf1hrvgy1ajm" path="res://scenes/levels/set1/1_2/map1_2.tscn" id="4_wherh"]
 [ext_resource type="PackedScene" uid="uid://eif2kkm1ix8o" path="res://entities/enemies/enemy.tscn" id="5_m867u"]
 [ext_resource type="PackedScene" uid="uid://tvr1ag56rn38" path="res://entities/player/player.tscn" id="6_1lrjk"]
-[ext_resource type="TileSet" uid="uid://b0i3r48j8ku4v" path="res://scenes/levels/level_tiles.tres" id="6_b84cj"]
 [ext_resource type="PackedScene" uid="uid://dji04lggosyfy" path="res://scenes/levels/LevelCamera.tscn" id="7_bi4cs"]
 
 [node name="Level12" type="Node2D"]
@@ -16,14 +15,17 @@ script = ExtResource("1_ungnu")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="StartingText" parent="UI" instance=ExtResource("1_4rm3a")]
+visible = false
 
 [node name="EndingText" parent="UI" instance=ExtResource("2_00ax8")]
+visible = false
+
+[node name="TileMap" parent="." instance=ExtResource("4_wherh")]
+layer_1/name = "walls"
+layer_1/navigation_enabled = false
 
 [node name="Replay" parent="." node_paths=PackedStringArray("Entities") instance=ExtResource("3_pd6fx")]
 Entities = NodePath("../Actors")
-
-[node name="TileMap" parent="." instance=ExtResource("4_wherh")]
-tile_set = ExtResource("6_b84cj")
 
 [node name="Actors" type="Node2D" parent="."]
 
@@ -40,5 +42,3 @@ position = Vector2(200, 320)
 [node name="LevelCamera" parent="." node_paths=PackedStringArray("player", "level") instance=ExtResource("7_bi4cs")]
 player = NodePath("../Actors/Player")
 level = NodePath("../TileMap")
-
-[connection signal="player_entered_end" from="TileMap" to="." method="on_player_entered_end"]

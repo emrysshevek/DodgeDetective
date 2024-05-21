@@ -13,6 +13,8 @@
 script = ExtResource("1_5ejcv")
 
 [node name="Map1_1" parent="." instance=ExtResource("4_rnx4e")]
+layer_1/name = "walls"
+layer_1/navigation_enabled = false
 
 [node name="UI" type="CanvasLayer" parent="."]
 
