@@ -12,7 +12,6 @@ signal hit
 var is_bullet_time = false
 var in_step = false
 var step_direction
-var mode = "live"
 
 func reset():
 	super.reset()
@@ -35,9 +34,9 @@ func _process(delta):
 		print("is_bullet_time: ", is_bullet_time)
 
 func _physics_process(delta):
-	if mode == "live":
+	if controllable:
 		live_movement(delta)
-	elif mode == "replay":
+	else:
 		replay_movement(delta)
 
 func live_movement(delta):

@@ -8,7 +8,7 @@ var mode = ""
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if mode == "replay":
-		position = player.position
+		position = lerp(position, player.position, delta * 10)
 
 
 func set_mode(new_mode):
@@ -21,4 +21,4 @@ func set_mode(new_mode):
 		print(position)
 		zoom = Vector2(1.0, 1.0)
 	elif mode == "replay":
-		zoom = Vector2(1.5, 1.5)
+		zoom = Vector2(1.2, 1.2)

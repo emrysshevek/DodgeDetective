@@ -1,3 +1,30 @@
-[gd_scene format=3 uid="uid://82tqcmll6snx"]
+[gd_scene load_steps=5 format=3 uid="uid://82tqcmll6snx"]
+
+[ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_4catd"]
+[ext_resource type="PackedScene" uid="uid://blw1xb0f2n6oe" path="res://ui/LevelUI.tscn" id="1_mr5sv"]
+[ext_resource type="PackedScene" uid="uid://dji04lggosyfy" path="res://scenes/levels/LevelCamera.tscn" id="2_73jhi"]
+[ext_resource type="PackedScene" uid="uid://drsd2pavas777" path="res://scenes/levels/replay.tscn" id="3_1txor"]
 
 [node name="BaseLevel" type="Node2D"]
+script = ExtResource("1_4catd")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="StartTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+
+[node name="EndTimer" type="Timer" parent="Timers"]
+wait_time = 0.01
+one_shot = true
+
+[node name="MapContainer" type="Node2D" parent="."]
+
+[node name="Actors" type="Node2D" parent="."]
+
+[node name="LevelCamera" parent="." instance=ExtResource("2_73jhi")]
+
+[node name="Replay" parent="." instance=ExtResource("3_1txor")]
+
+[node name="LevelUI" parent="." instance=ExtResource("1_mr5sv")]
+
+[connection signal="timeout" from="Timers/EndTimer" to="." method="play_ending_replay"]

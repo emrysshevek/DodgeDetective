@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://1firnthn70gm"]
+
+[ext_resource type="Theme" uid="uid://bi6ruo1mhth1o" path="res://menus/themes/pause_button_theme.tres" id="1_3qg6y"]
+[ext_resource type="Script" path="res://menus/pause_menu.gd" id="1_8cwwq"]
+[ext_resource type="Shader" path="res://menus/new_shader.gdshader" id="2_jltwn"]
+[ext_resource type="StyleBox" uid="uid://ds54yt2demv2x" path="res://menus/themes/pause_button_normal.tres" id="2_v5h4u"]
+[ext_resource type="StyleBox" uid="uid://c860vl11q68xa" path="res://menus/themes/pause_button_hovor.tres" id="3_3l857"]
+[ext_resource type="StyleBox" uid="uid://do85cmueyfq0y" path="res://menus/themes/pause_button_pressed.tres" id="4_xwinb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmcsk"]
+shader = ExtResource("2_jltwn")
+shader_parameter/blur_amount = 6.784
+shader_parameter/mix_amount = 0.625
+shader_parameter/color_over = Color(1, 1, 1, 1)
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8cwwq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pmcsk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 506.0
+offset_top = 231.0
+offset_right = -502.0
+offset_bottom = -226.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.67451)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_3qg6y")
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_3qg6y")
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = ExtResource("2_v5h4u")
+theme_override_styles/hover = ExtResource("3_3l857")
+theme_override_styles/pressed = ExtResource("4_xwinb")
+text = "Restart"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_3qg6y")
+text = "Options
+"
+
+[node name="HomeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_3qg6y")
+text = "Home"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_clicked"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_clicked"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_clicked"]
+[connection signal="pressed" from="VBoxContainer/HomeButton" to="." method="_on_home_button_clicked"]

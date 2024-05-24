@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://blw1xb0f2n6oe"]
+
+[ext_resource type="Script" path="res://ui/level_ui.gd" id="1_hkwwk"]
+[ext_resource type="PackedScene" uid="uid://tfhwl8cjpl2v" path="res://ui/LevelEndText.tscn" id="2_7fe7y"]
+[ext_resource type="PackedScene" uid="uid://8cp846uxapmw" path="res://ui/LevelStartText.tscn" id="3_nupxi"]
+[ext_resource type="PackedScene" uid="uid://1firnthn70gm" path="res://menus/pause_menu.tscn" id="4_wd5xf"]
+
+[node name="LevelUI" type="CanvasLayer"]
+script = ExtResource("1_hkwwk")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 135
+
+[node name="EndingText" parent="Control/MarginContainer" instance=ExtResource("2_7fe7y")]
+visible = false
+layout_mode = 2
+
+[node name="StartingText" parent="Control/MarginContainer" instance=ExtResource("3_nupxi")]
+visible = false
+layout_mode = 2
+
+[node name="PauseMenu" parent="Control" instance=ExtResource("4_wd5xf")]
+visible = false
+layout_mode = 1

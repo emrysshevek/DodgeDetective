@@ -1,44 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://4c7pahy6x0u4"]
+[gd_scene load_steps=6 format=3 uid="uid://sh70gcywlmiq"]
 
-[ext_resource type="PackedScene" uid="uid://8cp846uxapmw" path="res://ui/LevelStartText.tscn" id="1_4rm3a"]
-[ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_ungnu"]
-[ext_resource type="PackedScene" uid="uid://tfhwl8cjpl2v" path="res://ui/LevelEndText.tscn" id="2_00ax8"]
-[ext_resource type="PackedScene" uid="uid://drsd2pavas777" path="res://scenes/levels/replay.tscn" id="3_pd6fx"]
+[ext_resource type="PackedScene" uid="uid://82tqcmll6snx" path="res://scenes/levels/base_level.tscn" id="1_crtld"]
+[ext_resource type="PackedScene" uid="uid://dnxge3taocl54" path="res://scenes/levels/set1/1_3/level1_3.tscn" id="2_drkni"]
 [ext_resource type="PackedScene" uid="uid://cjf1hrvgy1ajm" path="res://scenes/levels/set1/1_2/map1_2.tscn" id="4_wherh"]
 [ext_resource type="PackedScene" uid="uid://eif2kkm1ix8o" path="res://entities/enemies/enemy.tscn" id="5_m867u"]
 [ext_resource type="PackedScene" uid="uid://tvr1ag56rn38" path="res://entities/player/player.tscn" id="6_1lrjk"]
-[ext_resource type="PackedScene" uid="uid://dji04lggosyfy" path="res://scenes/levels/LevelCamera.tscn" id="7_bi4cs"]
 
-[node name="Level12" type="Node2D"]
-script = ExtResource("1_ungnu")
+[node name="BaseLevel" instance=ExtResource("1_crtld")]
+level_name = "Level 1-2"
+NextLevel = ExtResource("2_drkni")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="TileMap" parent="MapContainer" index="0" instance=ExtResource("4_wherh")]
 
-[node name="StartingText" parent="UI" instance=ExtResource("1_4rm3a")]
-visible = false
+[node name="Player" parent="Actors" index="0" instance=ExtResource("6_1lrjk")]
+position = Vector2(198, 326)
 
-[node name="EndingText" parent="UI" instance=ExtResource("2_00ax8")]
-visible = false
+[node name="Enemy" parent="Actors" index="1" instance=ExtResource("5_m867u")]
+position = Vector2(576, 280)
 
-[node name="TileMap" parent="." instance=ExtResource("4_wherh")]
-layer_1/name = "walls"
-layer_1/navigation_enabled = false
+[node name="Enemy2" parent="Actors" index="2" instance=ExtResource("5_m867u")]
+position = Vector2(576, 128)
 
-[node name="Replay" parent="." node_paths=PackedStringArray("Entities") instance=ExtResource("3_pd6fx")]
-Entities = NodePath("../Actors")
-
-[node name="Actors" type="Node2D" parent="."]
-
-[node name="Enemy" parent="Actors" instance=ExtResource("5_m867u")]
-position = Vector2(576, 320)
-
-[node name="Enemy2" parent="Actors" instance=ExtResource("5_m867u")]
-position = Vector2(576, 144)
-rotation = 3.14159
-
-[node name="Player" parent="Actors" instance=ExtResource("6_1lrjk")]
-position = Vector2(200, 320)
-
-[node name="LevelCamera" parent="." node_paths=PackedStringArray("player", "level") instance=ExtResource("7_bi4cs")]
+[node name="LevelCamera" parent="." index="3" node_paths=PackedStringArray("player", "level")]
 player = NodePath("../Actors/Player")
-level = NodePath("../TileMap")
+level = NodePath("../MapContainer/TileMap")

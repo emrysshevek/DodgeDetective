@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnxge3taocl54"]
+
+[ext_resource type="PackedScene" uid="uid://82tqcmll6snx" path="res://scenes/levels/base_level.tscn" id="1_k0tj1"]
+[ext_resource type="PackedScene" uid="uid://tvr1ag56rn38" path="res://entities/player/player.tscn" id="2_utqpw"]
+[ext_resource type="PackedScene" uid="uid://ce7gtoqfy1dbb" path="res://scenes/levels/set1/1_3/map1_3.tscn" id="3_0n1h0"]
+[ext_resource type="PackedScene" uid="uid://eif2kkm1ix8o" path="res://entities/enemies/enemy.tscn" id="3_1vqpj"]
+
+[node name="Level1_3" instance=ExtResource("1_k0tj1")]
+level_name = "Level 1-3"
+
+[node name="TileMap" parent="MapContainer" index="0" instance=ExtResource("3_0n1h0")]
+
+[node name="Player" parent="Actors" index="0" instance=ExtResource("2_utqpw")]
+position = Vector2(224, 352)
+
+[node name="Enemy" parent="Actors" index="1" instance=ExtResource("3_1vqpj")]
+position = Vector2(432, 232)
+rotation = -0.218166
+
+[node name="Enemy2" parent="Actors" index="2" instance=ExtResource("3_1vqpj")]
+position = Vector2(608, 272)
+rotation = 4.12247
+
+[node name="Enemy3" parent="Actors" index="3" instance=ExtResource("3_1vqpj")]
+position = Vector2(688, 464)
+rotation = 1.78896
+
+[node name="LevelCamera" parent="." index="3" node_paths=PackedStringArray("player")]
+player = NodePath("../Actors/Player")
+
+[node name="Replay" parent="." index="4" node_paths=PackedStringArray("Entities")]
+Entities = NodePath("../Actors")
